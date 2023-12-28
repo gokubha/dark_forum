@@ -8,6 +8,10 @@ const userRoutes = require("./server/Routes/userRoutes")
 
 app.use(express.urlencoded({ extended: false, limit: '50mb', parameterLimit: 3000 }))
 
+app.get("/",(req,res)=>{
+  res.send("💀💀💀FUCK YOU BRO💀💀💀")
+})
+
 app.use("/user", userRoutes)
 app.use("/admin", adminRoutes)
 

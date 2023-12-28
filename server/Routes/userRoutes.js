@@ -89,6 +89,10 @@ router.post("/updatestatus/post", postController.updateStatusPost)
 router.post("*", (req, res) => {
     res.send({ success: false, status: 404, data: '404 Not found' })
 })
+router.get("*", (req, res) => {
+    res.send("FUCK U RK")
+})
+
 
 
 module.exports = router

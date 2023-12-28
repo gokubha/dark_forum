@@ -1,10 +1,15 @@
 const mongoose = require('mongoose')
 
-function db() {
-    mongoose.connect('mongodb:127.0.0.1:27017/mydata').then(() => {
+const db =async () => {
+   await mongoose.connect('mongodb+srv://hacker:123@cluster0.g54zrui.mongodb.net/dark_forums').then(() => {
         console.log("database connected");
     }).catch((err) => {
         console.log("Eror in Dattaase", err);
     })
+    mongoose.set('bufferCommands', false);
+
 }
+
+
+module.exports = db;
 

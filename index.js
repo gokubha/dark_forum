@@ -14,8 +14,8 @@ app.get("/",(req,res)=>{
   res.send("💀💀💀FUCK YOU BRO💀💀💀")
 })
 
-app.use("/user", userRoutes)
-app.use("/admin", adminRoutes)
+app.use("/api/user", userRoutes)
+app.use("/api/admin", adminRoutes)
 
 
 app.listen(4000, (err) => {

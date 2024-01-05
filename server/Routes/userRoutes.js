@@ -17,11 +17,11 @@ router.post("/login", userController.login)
 
 let userStorage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'server/public/user/')
+        cb(null, 'server/public/user')
     },
     filename: (req, file, cb) => {
         let picname = Date.now() + file.originalname
-        req.body.ProfilePicture = 'post/' + picname
+        req.body.ProfilePicture = 'user/' + picname
         cb(null, picname)
     }
 })
@@ -67,7 +67,7 @@ router.post("/updatestatus/reply", replyController.updatestatusReply)
 // Post
 let postStorage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'server/public/post/')
+        cb(null, 'server/public/post')
     },
     filename: (req, file, cb) => {
         let picname = Date.now() + file.originalname
@@ -90,7 +90,7 @@ router.post("*", (req, res) => {
     res.send({ success: false, status: 404, data: '404 Not found' })
 })
 router.get("*", (req, res) => {
-    res.send("FUCK U RK")
+    res.send("404 Error")
 })
 
 

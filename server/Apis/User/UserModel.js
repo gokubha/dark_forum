@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
     Username: { type: String, default: '' },
     Password: { type: String, default: '' },
     Email: { type: String, default: '' },
-    ProfilePicture: { type: String, default: `https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png` },
+    ProfilePicture: { type: String, default: "user/default.jpg" },
     RegistrationDate: { type: Date, default: Date.now },
     UserType: { type: String, default: "2" }, //1=>Admin, 2=>Student , 3=> Staff
     Status: { type: Boolean, default: true }

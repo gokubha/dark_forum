@@ -29,10 +29,11 @@ router.post("/all/category", categoryController.getall)
 router.post("/single/category", categoryController.getsingle)
 
 // Checker
+
 router.use(require('../middleware/tokenChecker'))
 
 // User
-router.post("/all", userController.getAllUser)
+router.post("/alluser", userController.getAllUser)
 router.post("/single", userController.getSingle)
 router.post("/update", userController.updateUser)
 router.post("/status", userController.updatestatus)

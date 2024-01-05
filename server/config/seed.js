@@ -1,20 +1,22 @@
 const User = require('../Apis/User/UserModel')
 const bcrypt = require('bcrypt')
 
-User.findOne({Email:"admin@gmail.com"}).then((data)=>{
-    if(data == null){
+User.findOne({ Email: "admin@gmail.com" }).then((data) => {
+    if (data == null) {
         let admin = User({
-            Username:'Admin',
-            Password:bcrypt.hashSync('123', 10),
-            Email:'admin@gmail.com',
-            UserType:'1'
+            Username: 'Admin',
+            Password: bcrypt.hashSync('123', 10),
+            Email: 'admin@gmail.com',
+            UserType: '1'
         })
-        admin.save().then((result)=>{
+        admin.save().then((result) => {
             console.log('Admin Created');
+        }).catch(err => {
+            console.log('Error In Admin Creation', err);
         })
-    }else {
+    } else {
         console.log("Admin already Exists");
     }
-}).catch((err)=>{
+}).catch((err) => {
     console.log("Error in admin ", err.message);
 })

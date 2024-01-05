@@ -1,26 +1,19 @@
 const jwt = require('jsonwebtoken')
 const secretKey= '##@$%^#%&#&$#%3635Ggwgy6#^#%^#&#&*#HY#%%#^#^&#'
 
-module.exports = (req,res,next)=> {
+module.exports = (req, res, next)=>{
     let token = req.headers['authorization']
-    console.log(token);
     if(!!token)
-    jwt.verify(token,secretKey,(err,data)=>{
+    jwt.verify(token, secretKey, (err, data)=>{
         if(err)
-        res.send({
-            success:false,
-            status:500,
-            message:'Unauthorized Access'
-            })
-            else
+        res.send({ success:false, status:300, message:'Unauthorized access'})
+        else{
+            req.decoded = data
             next()
-            })
+        }
+    })
     else
-    res.send({
-        success: false,
-        status:400,
-        message:'No Token Found'
-    })        
-    }
+    res.send({success:false, status:400, message:"No token Found"})
+}
 
 

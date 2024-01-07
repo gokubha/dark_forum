@@ -125,12 +125,13 @@ const updatecategory = (req, res) => {
                         message: 'Categoy not found'
                     })
                 else
-                    if (!!req.body.CategoryName)
+                    if (!!req.body.CategoryName){
                         data.CategoryName = req.body.CategoryName
-
-                                let prevCategory = await Category.findOne({ CategoryName: (req.body.CategoryName) })
-                if (!!prevCategory)
+                    }
+                let prevCategory = await Category.findOne({ CategoryName: (req.body.CategoryName) })
+                if (!!prevCategory){
                     res.send({ success: false, status: 500, message: 'Category Exists with same Name' })
+                }
                 else {
                 data.save()
                     .then((saveddata) => {

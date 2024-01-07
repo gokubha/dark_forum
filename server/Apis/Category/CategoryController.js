@@ -107,6 +107,8 @@ const updatecategory = (req, res) => {
     let validation = ''
     if (!req.body._id)
         validation += "_id is required"
+        if (!req.body.CategoryName)
+        validation += "CategoryName is required"
     if (!!validation)
         res.send({
             success: false,
@@ -115,7 +117,7 @@ const updatecategory = (req, res) => {
         })
     else {
         Category.findOne({ _id: req.body._id })
-            .then((data) => {
+            .then(async (data) => {
                 if (data == null)
                     res.send({
                         success: false,
@@ -125,6 +127,11 @@ const updatecategory = (req, res) => {
                 else
                     if (!!req.body.CategoryName)
                         data.CategoryName = req.body.CategoryName
+
+                                let prevCategory = await Category.findOne({ CategoryName: (req.body.CategoryName) })
+                if (!!prevCategory)
+                    res.send({ success: false, status: 500, message: 'Category Exists with same Name' })
+                else {
                 data.save()
                     .then((saveddata) => {
                         res.send({
@@ -141,6 +148,7 @@ const updatecategory = (req, res) => {
                             message: err.message
                         })
                     })
+                }
             })
             .catch(err => {
                 res.send({

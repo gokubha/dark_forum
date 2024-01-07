@@ -128,11 +128,7 @@ const updatecategory = (req, res) => {
                     if (!!req.body.CategoryName){
                         data.CategoryName = req.body.CategoryName
                     }
-                let prevCategory = await Category.findOne({ CategoryName: (req.body.CategoryName) })
-                if (!!prevCategory){
-                    res.send({ success: false, status: 500, message: 'Category Exists with same Name' })
-                }
-                else {
+
                 data.save()
                     .then((saveddata) => {
                         res.send({
@@ -204,6 +200,4 @@ const changestatus = (req, res) => {
             })
     }
 }
-
-const updateCategoryName =
     module.exports = { addcategory, getall, getsingle, updatecategory, changestatus }
